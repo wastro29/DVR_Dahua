@@ -92,7 +92,7 @@ def carve_file(f, blocksize, quality, Spath):
                 FirstCam = int.from_bytes(
                                           buf[offsetSt+6 :offsetSt + 8], byteorder='little')+1
                 FirstDate_ = int.from_bytes(
-                                            (buf[offsetSt + 16:offsetSt + 20]), byteorder='little')  # int little endian
+                                            (buf[offsetSt + 15:offsetSt + 20]), byteorder='little')  # int little endian
                 FirstDate = int.from_bytes(
                                            (buf[offsetSt + 16:offsetSt + 20]), byteorder='little')  # int little endian
                 FirstQual = int.from_bytes(
@@ -120,7 +120,8 @@ def carve_file(f, blocksize, quality, Spath):
 #                        time_e = Time_conv(FirstDate)
 
 #                        filename = "N:\start_"+ time_s + '_' + str(int(l * blocksize + StartOffset)) + "_" + str(int(l * blocksize + EndOffset)) + "_" + "Cam_" + str(FirstCam) + '.dav'
-                        filename = Spath + "\Cam_" + str(FirstCam)+ "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate) + "_" + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
+                        filename_ = Spath + "\Cam_" + str(FirstCam)+ "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate) + "_"
+                        filename = f'{filename_}' + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
 
                         with open(f'{filename}', 'wb') as files:
                              files.write(subdata)
@@ -136,7 +137,7 @@ def carve_file(f, blocksize, quality, Spath):
                     FirstDate = int.from_bytes(
                                                (buf[offsetSt + 16:offsetSt + 20]), byteorder='little')  # int little endian
                     FirstDate_ = int.from_bytes(
-                                                (buf[offsetSt + 16:offsetSt + 20]), byteorder='little')  # int little endian
+                                                (buf[offsetSt + 15:offsetSt + 20]), byteorder='little')  # int little endian
                     FirstQual = int.from_bytes(
                                                buf[offsetSt + 29:offsetSt + 30], byteorder='big')
                     i = 1
@@ -146,7 +147,8 @@ def carve_file(f, blocksize, quality, Spath):
         if (c == 0)and (StartOffset != 0) and (EndOffset != 0) :
             if (FirstQual == quality) or (quality == all):
                 subdata = buf[StartOffset:EndOffset]
-                filename = Spath + "\Cam_" + str(FirstCam) + "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate)+ "_" + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
+                filename_ = Spath + "\Cam_" + str(FirstCam) + "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate)+ "_"
+                filename = f'{filename_}' + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
                 with open(f'{filename}', 'wb') as files:
                      files.write(subdata)
                      files.close()
