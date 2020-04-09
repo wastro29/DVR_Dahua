@@ -120,7 +120,7 @@ def carve_file(f, blocksize, quality, Spath):
 #                        time_e = Time_conv(FirstDate)
 
 #                        filename = "N:\start_"+ time_s + '_' + str(int(l * blocksize + StartOffset)) + "_" + str(int(l * blocksize + EndOffset)) + "_" + "Cam_" + str(FirstCam) + '.dav'
-                        filename_ = Spath + "\Cam_" + str(FirstCam)+ "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate) + "_"
+                        filename_ = Spath + "\Cam_" + str(FirstCam) + "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate) + "_"
                         filename = f'{filename_}' + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
 
                         with open(f'{filename}', 'wb') as files:
