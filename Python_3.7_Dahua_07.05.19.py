@@ -122,9 +122,9 @@ def carve_file(f, blocksize, quality, Spath):
 #                        filename = "N:\start_"+ time_s + '_' + str(int(l * blocksize + StartOffset)) + "_" + str(int(l * blocksize + EndOffset)) + "_" + "Cam_" + str(FirstCam) + '.dav'
                         filename = Spath + "\Cam_" + str(FirstCam)+ "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate) + "_" + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
 
-                        copy_file = open(filename,'wb')
-                        copy_file.write(subdata)
-                        copy_file.close()
+                        with open(f'{filename}', 'wb') as files:
+                             files.write(subdata)
+                             files.close()
 #                       copy_file = open('J:\Cunk_'+ str(l), 'wb')
 #                       copy_file.write(buf)
 #                       copy_file.close()
@@ -147,9 +147,9 @@ def carve_file(f, blocksize, quality, Spath):
             if (FirstQual == quality) or (quality == all):
                 subdata = buf[StartOffset:EndOffset]
                 filename = Spath + "\Cam_" + str(FirstCam) + "_" + Time_conv(FirstDate_) + "-" + Time_conv(FirstDate)+ "_" + str(int(l * blocksize + StartOffset+jump)) + "_" + str(int(l * blocksize + EndOffset+jump)) + ".dav"
-                copy_file = open(filename, 'wb')
-                copy_file.write(subdata)
-                copy_file.close()
+                with open(f'{filename}', 'wb') as files:
+                     files.write(subdata)
+                     files.close()
                 StartOffset = 0
                 EndOffset = 0
                 k = k + 1
