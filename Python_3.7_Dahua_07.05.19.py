@@ -2,7 +2,7 @@ import os
 import sys
 import hashlib
 import re
-import binascii
+import binascii as bs
 
 
 ''' Python 3.7  for Dahua  by Dmytro Moisiuk '''
